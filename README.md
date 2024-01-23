@@ -14,20 +14,36 @@ cd backend
 ```
 pip install -r requirements.txt
 ```
-4. Make a .env file and add the PostgreSQL username (DB_USERNAME), password (DB_PASSWORD), host (DB_HOST), Database Name (DB_NAME) in it.
-5. Run the Flask server.
+4. Create virtual environment and depending on OS, activate it.
+```
+virtualenv env
+env/Scripts/activate
+```
+or 
+```
+virtualenv env
+source env/Scripts/activate
+```
+5. Make a .env file and add the PostgreSQL username (DB_USERNAME), password (DB_PASSWORD), host (DB_HOST), Database Name (DB_NAME) in it.
+```
+DB_USERNAME=
+DB_PASSWORD=
+DB_HOST=
+DB_NAME=
+```
+6. Run the Flask server.
 ```
 python app.py
 ```
-6. Open another terminal, and move to frontend directory.
+7. Open another terminal, and move to frontend directory.
 ```
 cd frontend
 ```
-7. Install the packages
+8. Install the packages
 ```
 yarn
 ```
-8. Run the frontend
+9. Run the frontend
 ```
 yarn dev
 ```
