@@ -31,3 +31,8 @@ yarn
 ```
 yarn dev
 ```
+### Verify Data in PostgreSQL
+1. Open psql Command Shell
+2. `\l` for viewing all databases.
+3. `\c <db-name>` for switching to the database where data is stored.
+4. `select * from "user";` for viewing all the records.
