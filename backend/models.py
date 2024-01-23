@@ -6,13 +6,32 @@ load_dotenv()
 
 db = SQLAlchemy()
 
-conn = psycopg2.connect(
+try:
+    conn = psycopg2.connect(
         host="localhost",
-        database=os.environ['DB_NAME'],
         user=os.environ['DB_USERNAME'],
-        password=os.environ['DB_PASSWORD'])
+        password=os.environ['DB_PASSWORD'],
+        database=os.environ['DB_NAME']
+    )
+    conn.close()
+except psycopg2.OperationalError:
+    conn = psycopg2.connect(
+        host="localhost",
+        user=os.environ['DB_USERNAME'],
+        password=os.environ['DB_PASSWORD']
+    )
+    conn.autocommit = True
+    cur = conn.cursor()
+    cur.execute(f"CREATE DATABASE {os.environ['DB_NAME']}")
+    conn.close()
 
-cur = conn.cursor()
+conn = psycopg2.connect(
+    host="localhost",
+    user=os.environ['DB_USERNAME'],
+    password=os.environ['DB_PASSWORD'],
+    database=os.environ['DB_NAME']
+)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
